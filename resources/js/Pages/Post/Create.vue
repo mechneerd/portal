@@ -62,16 +62,41 @@
                 </div>
 
                 
-    <div class="mb-4">
-        <label for="skills" class="block text-sm font-medium text-gray-700">Skills</label>
-        <MultiSelect v-model="selectedCities" display="chip" :options="cities" optionLabel="name" filter placeholder="Select Cities"
-            :maxSelectedLabels="3" class="w-full md:w-80" />
-    </div>
+                <div class="mb-4">
+                    <label for="skills" class="block text-sm font-medium text-gray-700">Skills</label>
+                    <MultiSelect
+                        v-model="form.skills"
+                        display="chip"
+                        :options="skillsOptions"
+                        optionLabel="name"
+                        filter
+                        placeholder="Select Skills"
+                        :maxSelectedLabels="3"
+                        class="w-full md:w-80"
+                    />
+                </div>
 
-    <div class="field">
+                <div class="mb-4">
+                    <label for="application_url" class="block text-sm font-medium text-gray-700">Job Application URL</label>
+                    <InputText
+                        id="application_url"
+                        v-model="form.application_url"
+                        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                        required
+                    />
+                </div>
+
+            <div class="field">
                     <label for="logo">Company Logo</label>
 
                     <input type="file" @input="form.logo = $event.target.files[0]" />
+                   
+                </div>
+
+                <div class="field">
+                    <label for="job_file">Job file</label>
+
+                    <input type="file" @input="form.job_file = $event.target.files[0]" />
                    
                 </div>
 
@@ -91,6 +116,16 @@
 import { ref, reactive } from 'vue';
 import {useForm} from '@inertiajs/vue3';
 
+
+const skillsOptions = [
+    { name: 'JavaScript', code: 'js' },
+    { name: 'Vue.js', code: 'vue' },
+    { name: 'React', code: 'react' },
+    { name: 'Node.js', code: 'node' },
+    { name: 'PHP', code: 'php' },
+    { name: 'CSS', code: 'css' }
+];
+
 const form = useForm({
     title: '',
     logo:null,
@@ -99,15 +134,11 @@ const form = useForm({
     location: '',
     salary: '',
     job_type: null,
+    skils:[],
+    job_file:'',
+    application_url:'',
 });
-const selectedCities = ref();
-const cities = ref([
-    { name: 'New York', code: 'NY' },
-    { name: 'Rome', code: 'RM' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Istanbul', code: 'IST' },
-    { name: 'Paris', code: 'PRS' }
-]);
+
 const jobTypes = [
     { label: 'Full-time', value: 'full-time' },
     { label: 'Part-time', value: 'part-time' },

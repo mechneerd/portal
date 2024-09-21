@@ -42,4 +42,5 @@ class PublishJobController extends Controller
             'jobs' => $jobs,
         ]);
     }
+    
 }

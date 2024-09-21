@@ -29,3 +29,4 @@ Route::inertia('/post','Post/Create')->name('post');
 Route::post('/post',[PublishJobController::class,'create'])->name('post');
 //index
 Route::get('/postindex',[PublishJobController::class,'index'])->name('postindex');
+

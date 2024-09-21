@@ -1,5 +1,6 @@
 <template>
-  <main class="flex flex-col items-center justify-center bg-gray-700 p-4">
+  <div class="bg-gray-500">
+    <main class="flex flex-col items-center justify-center p-4">
     <div v-for="job in jobs" :key="job.id" class="group bg-gray-900 p-4 mb-4 transition-all duration-300 hover:rotate-1 lg:p-8 w-full max-w-md">
       <div class="mb-3 text-right">
         <button @click="deleteJob(job.id)" class="text-gray-50 transition-all duration-300 hover:scale-110 hover:text-red-600">
@@ -28,6 +29,9 @@
       </div>
     </div>
   </main>
+
+  </div>
+
 </template>
 
 <script setup>

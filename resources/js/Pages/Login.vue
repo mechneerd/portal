@@ -1,6 +1,6 @@
 <!-- resources/js/Pages/Login.vue -->
 <template>
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="flex items-center justify-center min-h-screen bg-gray-500">
         <div class="bg-white p-6 rounded shadow-md w-96">
             <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>
             <form @submit.prevent="submitForm">
@@ -30,7 +30,11 @@
                 >
                     Login
                 </button>
-                <div v-if="error" class="text-red-600 mt-2 text-center">{{ error }}</div>
+
+                <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                      Don’t have an account yet? <Link href="/register" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</Link>
+                  </p>
+                  
             </form>
         </div>
     </div>
@@ -38,7 +42,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { Link, useForm } from '@inertiajs/vue3';
 
 
 const form = useForm({

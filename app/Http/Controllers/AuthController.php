@@ -10,13 +10,19 @@ class AuthController extends Controller
 {
     //
     public function register(Request $request){
-        //dd($request);
+       // dd($request);
         //validate
         $field = $request->validate([
             'name'=>['required','max:100'],
             'email'=>['required','email','unique:users'],
             'password'=>['confirmed','required'],
+            'image' => 'nullable|image|max:1024',
         ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('logos', 'public');
+            $field['image'] = $path; // Store the path in the data array
+        }
 
         //create user
         $user =User::create($field);
@@ -34,7 +40,10 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
+            
         ]);
+
+
 
         // Attempt to log the user in
         if (Auth::attempt($request->only('email', 'password'))) {
@@ -50,7 +59,9 @@ class AuthController extends Controller
     {
         //dd($request);
         Auth::logout();
-        return redirect()->route('home'); // Redirect to login page after logout
+        return redirect()->route('login'); // Redirect to login page after logout
     }
+
+    
 
 }

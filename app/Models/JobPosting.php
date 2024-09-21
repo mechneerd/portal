@@ -28,4 +28,14 @@ class JobPosting extends Model
     protected $dates = [
         'expires_at',
     ];
+    public function likes()
+{
+    return $this->hasMany(Like::class);
+}
+
+public function likedByUser($userId)
+{
+    return $this->likes()->where('user_id', $userId)->exists();
+}
+
 }
